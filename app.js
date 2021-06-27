@@ -13,6 +13,7 @@ const form = document.querySelector("form");
 form.addEventListener("submit", e => {
   e.preventDefault();
   const input = document.querySelector("#message-input");
+  if (!input.value.length) return;
   document.querySelector("#message-form").classList.add("hide");
   document.querySelector("#link-form").classList.remove("hide");
 
@@ -23,8 +24,13 @@ form.addEventListener("submit", e => {
   linkInput.select();
 });
 
+const copyBtn = document.querySelector(".copy");
 
-
+copyBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelector("#message-input").select();
+  document.execCommand("copy");
+});
 
 function b64EncodeUnicode(str) {
   // first we use encodeURIComponent to get percent-encoded UTF-8,
