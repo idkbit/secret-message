@@ -28,8 +28,9 @@ const copyBtn = document.querySelector(".copy");
 
 copyBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  document.querySelector("#message-input").select();
+  document.querySelector("#link-input").select();
   document.execCommand("copy");
+  document.querySelector("#link-input").select();
 });
 
 function b64EncodeUnicode(str) {
