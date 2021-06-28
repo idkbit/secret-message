@@ -20,6 +20,14 @@
       display: flex;
       align-items: center;
     }
+
+    .popup {
+      display: inline-block;
+      transform: translateY(50%);
+      opacity: 0;
+      transition: all .5s ease-in-out;
+      color: #26a69a;
+    }
   </style>
   <title>Secret Message</title>
 </head>
@@ -42,13 +50,14 @@
       </div>
       <div id="link-form" class="card-panel hide">
         <div>
-          <p>Share this link with a friend</p>
+          <p>Поделитесь этой ссылкой с другом</p>
           <div class="input-field">
             <input type="text" id="link-input">
             <button class="copy btn"><i class="fas fa-copy"></i></button>
           </div>
         </div>
       </div>
+      <span class="popup hide">Ссылка скопирована</span>
     </div>
   </div>
   <script src="./app.js"></script>

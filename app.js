@@ -9,17 +9,17 @@ if (message) {
 }
 
 const form = document.querySelector("form");
+const linkInput = document.querySelector("#link-input");
+const input = document.querySelector("#message-input");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
-  const input = document.querySelector("#message-input");
   if (!input.value.length) return;
   document.querySelector("#message-form").classList.add("hide");
   document.querySelector("#link-form").classList.remove("hide");
 
   const encrypted = b64EncodeUnicode(input.value)
 
-  const linkInput = document.querySelector("#link-input");
   linkInput.value = `${window.location}#${encrypted}`;
   linkInput.select();
 });
@@ -28,9 +28,27 @@ const copyBtn = document.querySelector(".copy");
 
 copyBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  document.querySelector("#link-input").select();
+  linkInput.select();
   document.execCommand("copy");
-  document.querySelector("#link-input").select();
+  linkInput.select();
+});
+
+linkInput.addEventListener("copy", e => {
+  const popup = document.querySelector(".popup");
+  popup.classList.remove("hide");
+
+  setTimeout(() => {
+    popup.style.opacity = "1";
+    setTimeout(() => {
+      popup.style.transform = "translateY(0)";
+      setTimeout(() => {
+        popup.style = "";
+        popup.classList.add("hide");
+      }, 1000)
+    }, 200)
+  }, 100);
+
+
 });
 
 function b64EncodeUnicode(str) {
